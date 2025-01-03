@@ -6,11 +6,20 @@ def add_student(students):
     students.append({
         'name': input('Name: '),
         'section': input('Section: '),
-        'grades': [float(input('Spanish grade: ')), 
-                   float(input('English grade: ')), 
-                   float(input('Socials grade: ')),
-                   float(input('Sciences grade: '))],          
+        'grades': [],          
     })
+
+    subjects = ['Spanish', 'English', 'Socials', 'Sciences']
+    for i in range(4):
+
+        grade=float(input(f'Enter grade {subjects[i]}: '))
+        
+        if grade < 0 or grade > 100:
+            print('Invalid grade')
+            i-=1
+            continue
+            
+        students[-1]['grades'].append(grade)
 
     students[-1]['average'] = sum(students[-1]['grades'])/4
 
