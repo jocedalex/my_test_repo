@@ -40,8 +40,8 @@ def main_menu():
             elif option == 7:
                 break
 
-        except ValueError as e:
-            print('invalid Option',e)
+        except ValueError:
+            print('invalid Option')
 
 
 if __name__ == '__main__':

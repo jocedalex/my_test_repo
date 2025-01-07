@@ -1,20 +1,20 @@
 import csv
 from time import sleep
 from os import system
-from copy import deepcopy
+from actions import Student
 
 def save_data(students):
     system('cls')
     file_name=input('Enter the file name: ')
 
-    students_data=deepcopy(students)
-
     with open(f'{file_name}.csv', mode='w', newline='') as file:
         writer = csv.DictWriter(file,('name', 'section', 'grades', 'average'))
         writer.writeheader()
-        for student in students_data:
-            student['grades'] = str(student['grades']).replace('[','').replace(']','')
-            writer.writerow(student)
+        for student in students:
+            new_grades=student.grades.copy()
+            student.grades = str(student.grades).replace('[','').replace(']','')
+            writer.writerow(student.__dict__)
+            student.grades=new_grades # Revert the changes to the list
 
     print('Data saved successfully')
     sleep(3)
@@ -28,12 +28,8 @@ def import_data():
         with open(f'{file_name}.csv', mode='r') as file:
             reader = csv.DictReader(file)
             for row in reader:
-                students.append({
-                    'name': row['name'],
-                    'section': row['section'],
-                    'grades': [float(item) for item in row['grades'].split(',')],
-                    'average': float(row['average'])
-                })
+                students.append(Student(row['name'], row['section'], row['grades'].split(',')))
+                students[-1].average = float(row['average'])
 
         return students
     

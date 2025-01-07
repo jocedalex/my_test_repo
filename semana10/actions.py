@@ -10,22 +10,24 @@ def add_student(students):
     })
 
     subjects = ['Spanish', 'English', 'Socials', 'Sciences']
-    for i in range(4):
+    i=0
+    while i < 4:
+        
         try:
+
             grade=float(input(f'Enter grade {subjects[i]}: '))
             
             if grade < 0 or grade > 100:
                 print('Invalid grade')
-                i-=1
-                continue
                 
-            students[-1]['grades'].append(grade)
+            else:    
+                students[-1]['grades'].append(grade)
+                i+=1
 
         except ValueError:
-
             print('Invalid grade')
-            i-=1
-            continue
+            
+            
 
     students[-1]['average'] = sum(students[-1]['grades'])/4
 
@@ -46,24 +48,28 @@ def show_students(students):
 
 def show_top3(students):
     system('cls')
-    print('Top 3 Students'.center(30, '#'))
 
-    students.sort(key=lambda x: x['average'], reverse=True)
-    
-    print(f"Name: {students[0]['name']}", end=' - ')   
-    print(f"Section: {students[0]['section']}")
-    print(f"Average: {students[0]['average']}")
-    print()
+    if len(students) < 3:
+        raise ValueError('There are not enough students to show the top 3')
+    else:
+        print('Top 3 Students'.center(30, '#'))
 
-    print(f"Name: {students[1]['name']}", end=' - ')
-    print(f"Section: {students[1]['section']}")
-    print(f"Average: {students[1]['average']}")
-    print()
+        students.sort(key=lambda x: x['average'], reverse=True)
+        
+        print(f"Name: {students[0]['name']}", end=' - ')   
+        print(f"Section: {students[0]['section']}")
+        print(f"Average: {students[0]['average']}")
+        print()
 
-    print(f"Name: {students[2]['name']}", end=' - ')
-    print(f"Section: {students[2]['section']}")
-    print(f"Average: {students[2]['average']}")
-    print()
+        print(f"Name: {students[1]['name']}", end=' - ')
+        print(f"Section: {students[1]['section']}")
+        print(f"Average: {students[1]['average']}")
+        print()
+
+        print(f"Name: {students[2]['name']}", end=' - ')
+        print(f"Section: {students[2]['section']}")
+        print(f"Average: {students[2]['average']}")
+        print()
 
 
 def general_average(students):
