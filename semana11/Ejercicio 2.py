@@ -4,9 +4,9 @@ class Person:
         self.age = age
 
 class Bus:
-    def __init__(self):
+    def __init__(self,passengers):
         self.passengers = []
-        self.max_passengers = int(input('Enter the maximum number of passengers for this Bus: '))
+        self.max_passengers = passengers
 
     def add_passenger(self, person):
         if len(self.passengers) < self.max_passengers:
@@ -24,11 +24,30 @@ class Bus:
             
         print('That passenger is not in the bus')
 
-first_user=Person('John', 25)
-second_user=Person('Jane', 30)
+try:
+    passengers=int(input('Enter the maximum number of passengers for this Bus: '))
+    new_bus=Bus(passengers)
 
-new_bus=Bus()
-new_bus.add_passenger(first_user)
-new_bus.add_passenger(second_user)
+except ValueError:
+    print('Please enter a valid number for passangers limit')
 
-new_bus.remove_passenger()
+
+option=0
+while option !=3:
+    try:
+        option=int(input('Enter 1 to add a passenger or 2 to remove a passanger or 3 to continue: '))
+
+        if option == 1:
+            name=input('Enter the name of the passenger: ')
+            age=int(input('Enter the age of the passenger: '))
+
+            new_passenger=Person(name, age)
+            new_bus.add_passenger(new_passenger)
+
+        elif option == 2:
+            new_bus.remove_passenger()
+
+    except ValueError:
+        print('Please enter a valid option')
+
+
