@@ -11,8 +11,10 @@ def save_data(students):
         writer = csv.DictWriter(file,('name', 'section', 'grades', 'average'))
         writer.writeheader()
         for student in students:
+            new_grades=student.grades.copy()
             student.grades = str(student.grades).replace('[','').replace(']','')
             writer.writerow(student.__dict__)
+            student.grades=new_grades # Revert the changes to the list
 
     print('Data saved successfully')
     sleep(3)
