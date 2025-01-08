@@ -13,11 +13,15 @@ def my_bubble(element_list):
 
     return element_list#O(1)
 
+##############O(n-1)*(n-i-1)#############
+
 
 #2.a
 def print_numbers_times_2(numbers_list):
 	for number in numbers_list: #O(len(numbers_list))
 		print(number * 2) #O(1)
+		
+##############O(len(numbers_list))#############
           
 #2.b
 def check_if_lists_have_an_equal(list_a, list_b):
@@ -28,11 +32,15 @@ def check_if_lists_have_an_equal(list_a, list_b):
 				
 	return False#O(1)
 
+##############O(len(list_a)*len(list_b))#############
+
 #2.c
 def print_10_or_less_elements(list_to_print):
 	list_len = len(list_to_print) #O(1)
 	for index in range(min(list_len, 10)): #O(min(list_len, 10))
 		print(list_to_print[index]) #O(1)
+
+##############O(min(list_len, 10))#############
 		
 #2.d
 def generate_list_trios(list_a, list_b, list_c):
@@ -43,3 +51,5 @@ def generate_list_trios(list_a, list_b, list_c):
 				result_list.append(f'{element_a} {element_b} {element_c}') #O(1)
 				
 	return result_list #O(1)
+
+##############O(len(list_c)*len(list_b)*len(list_a))#############
