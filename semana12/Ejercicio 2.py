@@ -3,14 +3,17 @@
 #     2. Ahora cree las siguientes clases que hereden de `Shape` e implementen esos métodos: `Circle`, `Square` y `Rectangle`.
 #     3. Cada una de estas necesita los atributos respectivos para poder calcular el área y el perímetro.
 from math import pi
+from abc import ABC, abstractmethod
 
-class Shape:
+class Shape(ABC):
     def __init__(self):
         pass
 
+    @abstractmethod
     def calculate_perimeter(self):
         pass
 
+    @abstractmethod
     def calculate_area(self):
         pass
 
